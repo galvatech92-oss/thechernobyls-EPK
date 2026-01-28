@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Chernobyl's Press Kit</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        skaYellow: '#FFD700', // Dorado/Amarillo intenso
+                        skaBlack: '#0a0a0a',
+                        skaWhite: '#f5f5f5',
+                    },
+                    fontFamily: {
+                        'display': ['Anton', 'sans-serif'],
+                        'body': ['Roboto Mono', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'checker': "conic-gradient(#0a0a0a 90deg, transparent 90deg 180deg, #0a0a0a 180deg 270deg, transparent 270deg)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Animations */
+        body {
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        /* Checkerboard Pattern CSS */
+        .bg-checker-pattern {
+            background-image: 
+                linear-gradient(45deg, #000 25%, transparent 25%), 
+                linear-gradient(-45deg, #000 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #000 75%), 
+                linear-gradient(-45deg, transparent 75%, #000 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            background-color: #FFD700;
+        }
+
+        .bg-checker-strip {
+            height: 20px;
+            width: 100%;
+            background-image: 
+                linear-gradient(45deg, #000 25%, transparent 25%), 
+                linear-gradient(-45deg, #000 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #000 75%), 
+                linear-gradient(-45deg, transparent 75%, #000 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            background-color: #fff;
+        }
+
+        /* Glitch Effect for Title */
+        .glitch {
+            position: relative;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 #FFD700;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 #fff;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(10px, 9999px, 30px, 0); }
+            20% { clip: rect(80px, 9999px, 100px, 0); }
+            100% { clip: rect(40px, 9999px, 60px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(60px, 9999px, 90px, 0); }
+            20% { clip: rect(10px, 9999px, 50px, 0); }
+            100% { clip: rect(100px, 9999px, 140px, 0); }
+        }
+
+        /* Marquee Animation */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Reveal on Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFD700;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #fff;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #FFD700;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-skaYellow selection:text-skaBlack">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
+        <div class="text-2xl font-display uppercase tracking-wider">THE CHERNOBYL´S</div>
+        <div class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-widest">
+            <a href="#bio" class="nav-link hover:text-skaYellow transition">La Banda</a>
+            <a href="#music" class="nav-link hover:text-skaYellow transition">Música</a>
+            <a href="#video" class="nav-link hover:text-skaYellow transition">Video</a>
+            <a href="#dates" class="nav-link hover:text-skaYellow transition">Trayectoria</a>
+            <a href="#contact" class="nav-link hover:text-skaYellow transition">Contacto</a>
+        </div>
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-2xl">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-skaBlack z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center space-y-8 text-2xl font-display uppercase">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-skaYellow text-3xl"><i class="fas fa-times"></i></button>
+        <a href="#bio" class="hover:text-skaYellow" onclick="closeMenu()">La Banda</a>
+        <a href="#music" class="hover:text-skaYellow" onclick="closeMenu()">Música</a>
+        <a href="#video" class="hover:text-skaYellow" onclick="closeMenu()">Video</a>
+        <a href="#dates" class="hover:text-skaYellow" onclick="closeMenu()">Trayectoria</a>
+        <a href="#contact" class="hover:text-skaYellow" onclick="closeMenu()">Contacto</a>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex flex-col justify-center items-center overflow-hidden">
+        <!-- Background Image (Placeholder) -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=2070&auto=format&fit=crop" alt="Band Background" class="w-full h-full object-cover opacity-40 grayscale">
+            <div class="absolute inset-0 bg-gradient-to-t from-skaBlack via-transparent to-black/80"></div>
+        </div>
+
+        <div class="z-10 text-center px-4 relative flex flex-col items-center">
+            <p class="text-skaYellow tracking-[0.5em] text-sm md:text-xl mb-4 font-bold uppercase reveal">Official Press Kit</p>
+            
+            <!-- LOGO PLACEHOLDER: -->
+            <!-- Aquí puedes reemplazar este div con tu imagen: <img src="logo.png" class="w-64 md:w-96 mb-6 reveal"> -->
+            <!-- Por ahora usamos el texto con efecto glitch, pero he preparado el estilo para que se vea rudo -->
+            <h1 class="text-5xl md:text-9xl font-display text-white uppercase mb-6 leading-none glitch" data-text="THE CHERNOBYL´S">
+                THE CHERNOBYL´S
+            </h1>
+            
+            <p class="text-gray-300 max-w-lg mx-auto mb-10 text-sm md:text-base reveal">
+                SKA + MÚSICA ELECTRÓNICA. Una fusión única desde la Ciudad de México.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center reveal">
+                <a href="#music" class="bg-skaYellow text-skaBlack border-2 border-skaYellow px-8 py-3 font-bold uppercase tracking-wider hover:bg-transparent hover:text-skaYellow transition-all duration-300 transform hover:-translate-y-1">
+                    Escuchar Ahora
+                </a>
+                <a href="#contact" class="border-2 border-white text-white px-8 py-3 font-bold uppercase tracking-wider hover:bg-white hover:text-skaBlack transition-all duration-300 transform hover:-translate-y-1">
+                    Contrataciones
+                </a>
+            </div>
+        </div>
+
+        <!-- Scrolling Banner -->
+        <div class="absolute bottom-10 w-full bg-skaYellow text-skaBlack py-2 font-display uppercase tracking-widest text-xl rotate-1 border-y-4 border-black">
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    SKA ELECTRONIC FUSION • THE CHERNOBYL´S • CDMX • TWO GENRES ONE SOUND • DANCE FOR ME • SKA MEXICANO • TETRIS MAN • SUICIDAL BOY • SKA ELECTRONIC FUSION • THE CHERNOBYL´S •
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Checker Strip -->
+    <div class="bg-checker-strip"></div>
+
+    <!-- Bio Section -->
+    <section id="bio" class="py-20 md:py-32 px-6 md:px-20 relative">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <!-- Stacked Photos Column -->
+            <div class="reveal relative flex flex-col items-center py-4">
+                <!-- Decorative element -->
+                <div class="absolute -top-10 -left-10 w-20 h-20 bg-checker-pattern z-0 hidden md:block"></div>
+                
+                <!-- Foto 1 (Rotada a la izquierda) -->
+                <img src="PRES1.jpg" alt="Band Photo 1" class="relative z-10 w-full md:w-5/6 grayscale hover:grayscale-0 transition-all duration-500 shadow-2xl border-4 border-skaWhite transform -rotate-3 mb-[-30px] hover:z-50 hover:scale-105" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1000';">
+                
+                <!-- Foto 2 (Rotada a la derecha) -->
+                <img src="PRES2.jpg" alt="Band Photo 2" class="relative z-20 w-full md:w-5/6 grayscale hover:grayscale-0 transition-all duration-500 shadow-2xl border-4 border-skaWhite transform rotate-2 mb-[-30px] hover:z-50 hover:scale-105" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=1000';">
+                
+                <!-- Foto 3 (Rotada a la izquierda) -->
+                <img src="PRES4.jpg" alt="Band Photo 3" class="relative z-30 w-full md:w-5/6 grayscale hover:grayscale-0 transition-all duration-500 shadow-2xl border-4 border-skaWhite transform -rotate-2 mb-[-30px] hover:z-50 hover:scale-105" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&q=80&w=1000';">
+                
+                <!-- Foto 4 (Rotada a la derecha) -->
+                <img src="PRES3.jpg" alt="Band Photo 4" class="relative z-40 w-full md:w-5/6 grayscale hover:grayscale-0 transition-all duration-500 shadow-2xl border-4 border-skaWhite transform rotate-3 hover:z-50 hover:scale-105" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=1000';">
+            </div>
+            
+            <div class="reveal">
+                <h2 class="text-5xl md:text-6xl font-display text-skaYellow mb-6 uppercase">La Reseña</h2>
+                <div class="w-20 h-2 bg-white mb-8"></div>
+                <p class="text-gray-300 mb-6 leading-relaxed">
+                    Consolidados a principios de 2024 en la Ciudad de México, <strong class="text-white">THE CHERNOBYL´S</strong> rompe esquemas. Bajo la producción de <strong>Paco Nobody</strong>, el proyecto combina dos mundos aparentemente opuestos: el Ska y la Música Electrónica.
+                </p>
+                <p class="text-gray-300 mb-6 leading-relaxed">
+                    Algo que ninguna banda del género ha hecho en México ni en el mundo. Así comienza este proyecto: una propuesta que rompe con lo establecido y abre una ruta distinta para crear, interpretar y vivir el ska. No se trata solo de sonar diferente, sino de replantear el proceso desde el origen: cómo se construyen las ideas, cómo se desarrollan los arreglos y cómo se traduce todo eso en una experiencia que se siente tanto en el escenario como en el público.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-6 mt-8">
+                    <div class="border border-gray-800 p-4 bg-gray-900">
+                        <span class="block text-3xl font-display text-white">2024</span>
+                        <span class="text-xs text-skaYellow uppercase">Año de Origen</span>
+                    </div>
+                    <div class="border border-gray-800 p-4 bg-gray-900">
+                        <span class="block text-3xl font-display text-white">CDMX</span>
+                        <span class="text-xs text-skaYellow uppercase">Base de Operaciones</span>
+                    </div>
+                </div>
+
+				<a href="presskit.pdf" download
+				class="inline-block mt-8 text-sm font-bold border-b border-skaYellow pb-1 hover:text-skaYellow transition">
+				<i class="fas fa-download mr-2"></i> Descargar Press Kit (PDF)
+				</a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Section -->
+    <section id="music" class="py-20 bg-white text-skaBlack relative">
+        <!-- Top Torn Paper Effect (CSS Clip Path) -->
+        <div class="absolute top-0 left-0 w-full h-10 bg-skaBlack" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 10%);"></div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-20">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-5xl md:text-7xl font-display uppercase mb-2">Discografía</h2>
+                <p class="font-bold tracking-widest text-gray-600">SKA + ELECTRÓNICA</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Spotify Embed (Increased height to 500px) -->
+                <div class="shadow-2xl transform rotate-1 transition hover:rotate-0 duration-300 reveal h-fit">
+                    <!-- Updated with THE CHERNOBYL'S Artist Link and increased height -->
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/58c6kAbngu3mzkglng7CbP?utm_source=generator&theme=0" width="100%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+
+                <!-- Latest Release Info -->
+                <div class="flex flex-col justify-center reveal">
+                    <h3 class="text-3xl font-display uppercase mb-2">Lanzamientos 2025</h3>
+                    <p class="mb-6 italic text-gray-600 font-medium border-l-4 border-skaYellow pl-3">
+                        Composiciones originales con producción propia.
+                    </p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="border-b border-gray-300 pb-2">
+                            <strong class="block text-xl text-black">TETRIS MAN</strong>
+                            <div class="text-sm text-gray-700 mt-1">
+                                <span class="bg-black text-white px-2 py-0.5 text-xs mr-2">1er SENCILLO</span>
+                                <span>Lanzamiento: 13 Marzo, 2025</span> <br>
+                                <span class="ml-0 md:ml-24 block md:inline text-skaBlack font-bold">Estreno Mundial: 20 Abril, 2025</span>
+                                <p class="mt-2 leading-tight">Su material audiovisual del sencillo TETRIS MAN nos deja marcado su concepto, dando un panorama amplio a su novedosa propuesta.</p>
+                            </div>
+                        </li>
+                        <li class="border-b border-gray-300 pb-2">
+                            <strong class="block text-xl text-black">SUICIDAL BOY</strong>
+                            <div class="text-sm text-gray-700 mt-1">
+                                <span class="bg-black text-white px-2 py-0.5 text-xs mr-2">2do SENCILLO</span>
+                                <span class="font-bold">Estreno Mundial: Martes 13 Mayo, 2025</span>
+                            </div>
+                        </li>
+                        <li class="border-b border-gray-300 pb-2">
+                            <strong class="block text-xl text-black">DANCE FOR ME</strong>
+                            <div class="text-sm text-gray-700 mt-1">
+                                <span class="bg-black text-white px-2 py-0.5 text-xs mr-2">3er SENCILLO</span>
+                                <span>Lanzamiento: 12 Agosto, 2025</span>
+                            </div>
+                        </li>
+                        <li class="border-b border-gray-300 pb-2">
+                            <strong class="block text-xl text-black">NADIE COMO TÚ</strong>
+                            <div class="text-sm text-gray-700 mt-1">
+                                <span class="bg-black text-white px-2 py-0.5 text-xs mr-2">RECIENTE LANZAMIENTO</span>
+                                <p class="mt-2 leading-tight">En su nuevo y más reciente lanzamiento NADIE COMO TÚ hace su primer participación SHENYA desde Moscú Rusia, Este lanzamiento nos da un fuerte mensaje de unidad representativo del género, nos recuerda que la música rompe las fronteras.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://open.spotify.com/intl-es/artist/58c6kAbngu3mzkglng7CbP?si=tdJCfbDPSnOR2zCoPEx5Sg" target="_blank" class="flex items-center gap-2 bg-black text-white px-6 py-3 hover:bg-gray-800 transition">
+                            <i class="fab fa-spotify text-green-500 text-xl"></i> Spotify
+                        </a>
+                        <a href="https://www.youtube.com/channel/UC93LDVLAjTB6EeBMe8IGCLg" target="_blank" class="flex items-center gap-2 bg-black text-white px-6 py-3 hover:bg-gray-800 transition">
+                            <i class="fab fa-youtube text-red-500 text-xl"></i> YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="py-24 bg-skaYellow relative overflow-hidden">
+        <div class="bg-checker-strip absolute top-0 left-0"></div>
+        
+        <!-- Background Element -->
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')]"></div>
+
+        <div class="max-w-full mx-auto relative z-10">
+            <div class="px-6 md:px-20 mb-10 flex flex-col md:flex-row justify-between items-end">
+                <div class="reveal">
+                    <h2 class="text-5xl md:text-8xl font-display text-black uppercase leading-none">En Vivo</h2>
+                    <h3 class="text-2xl md:text-4xl font-display text-white bg-black inline-block px-4 py-1 mt-2 transform -rotate-2">A Todo Color</h3>
+                </div>
+                <div class="hidden md:block text-black font-bold uppercase tracking-widest text-sm animate-bounce">
+                    Desliza para ver más <i class="fas fa-arrow-right ml-2"></i>
+                </div>
+            </div>
+
+            <!-- Horizontal Scroll Container -->
+            <!-- Added 'no-scrollbar' class (defined in CSS below if needed, or inline style) and snap behavior -->
+            <div class="flex overflow-x-auto gap-8 px-6 md:px-20 pb-12 snap-x snap-mandatory scroll-smooth" style="scrollbar-width: none; -ms-overflow-style: none;">
+                
+                <!-- Video 1 -->
+                <div class="min-w-[85vw] md:min-w-[600px] snap-center bg-black p-2 shadow-2xl transform transition hover:-translate-y-2 duration-300 group">
+                    <div class="relative w-full aspect-video border-2 border-gray-800 overflow-hidden">
+                        <a href="https://www.youtube.com/watch?v=KawEm8rvteU" target="_blank" rel="noopener">
+                            <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 group-hover:scale-105"
+                                src="https://img.youtube.com/vi/KawEm8rvteU/maxresdefault.jpg"
+                                alt="TETRIS MAN">
+                            <div class="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition duration-300">
+                                <div class="w-16 h-16 bg-skaYellow text-black rounded-full flex items-center justify-center text-2xl shadow-lg">
+                                    <i class="fas fa-play ml-1"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mt-4 px-2 pb-2">
+                        <h4 class="text-white font-display text-2xl uppercase tracking-wide">TETRIS MAN (Video Oficial)</h4>
+                        <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mt-1">Lanzamiento 2025</p>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="min-w-[85vw] md:min-w-[600px] snap-center bg-black p-2 shadow-2xl transform transition hover:-translate-y-2 duration-300 group">
+                    <div class="relative w-full aspect-video border-2 border-gray-800 overflow-hidden">
+                        <a href="https://www.youtube.com/watch?v=wMQ98tW5p1g" target="_blank" rel="noopener">
+                            <img src="https://img.youtube.com/vi/wMQ98tW5p1g/hqdefault.jpg"
+                                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 group-hover:scale-105"
+                                alt="DANCE FOR ME">
+                            <div class="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition duration-300">
+                                <div class="w-16 h-16 bg-skaYellow text-black rounded-full flex items-center justify-center text-2xl shadow-lg">
+                                    <i class="fas fa-play ml-1"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mt-4 px-2 pb-2">
+                        <h4 class="text-white font-display text-2xl uppercase tracking-wide">DANCE FOR ME</h4>
+                        <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mt-1">Video Oficial</p>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="min-w-[85vw] md:min-w-[600px] snap-center bg-black p-2 shadow-2xl transform transition hover:-translate-y-2 duration-300 group">
+                    <div class="relative w-full aspect-video border-2 border-gray-800 overflow-hidden">
+                        <a href="https://www.youtube.com/watch?v=BjLKQFMSqIk" target="_blank" rel="noopener">
+                            <img src="https://img.youtube.com/vi/BjLKQFMSqIk/hqdefault.jpg"
+                                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 group-hover:scale-105"
+                                alt="SUICIDAL BOY">
+                            <div class="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition duration-300">
+                                <div class="w-16 h-16 bg-skaYellow text-black rounded-full flex items-center justify-center text-2xl shadow-lg">
+                                    <i class="fas fa-play ml-1"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mt-4 px-2 pb-2">
+                        <h4 class="text-white font-display text-2xl uppercase tracking-wide">SUICIDAL BOY</h4>
+                        <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mt-1">Video Oficial</p>
+                    </div>
+                </div>
+
+                <!-- Video 4 -->
+                <div class="min-w-[85vw] md:min-w-[600px] snap-center bg-black p-2 shadow-2xl transform transition hover:-translate-y-2 duration-300 group">
+                    <div class="relative w-full aspect-video border-2 border-gray-800 overflow-hidden">
+                        <a href="https://www.youtube.com/watch?v=tRD6LLC0oFI" target="_blank" rel="noopener">
+                            <img src="https://img.youtube.com/vi/tRD6LLC0oFI/hqdefault.jpg"
+                                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 group-hover:scale-105"
+                                alt="NADIE COMO TÚ">
+                            <div class="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition duration-300">
+                                <div class="w-16 h-16 bg-skaYellow text-black rounded-full flex items-center justify-center text-2xl shadow-lg">
+                                    <i class="fas fa-play ml-1"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mt-4 px-2 pb-2">
+                        <h4 class="text-white font-display text-2xl uppercase tracking-wide">NADIE COMO TÚ</h4>
+                        <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mt-1">Feat. Shenya (Rusia)</p>
+                    </div>
+                </div>
+                
+                <!-- Spacer for scroll padding -->
+                <div class="min-w-[1px]"></div>
+
+            </div>
+        </div>
+        
+        <div class="bg-checker-strip absolute bottom-0 left-0"></div>
+    </section>
+
+    <!-- Integrantes Section (Replaces Gallery - Single Line Style) -->
+    <section class="py-20 bg-skaBlack px-4 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-skaYellow opacity-5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <h2 class="text-center text-5xl font-display text-white mb-16 reveal uppercase">Integrantes</h2>
+            
+            <!-- Grid adjusted to match Gallery style (2 cols mobile, 4 cols desktop, tight gap) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                
+                <!-- Member 1: Paco Nobody -->
+                <div class="group reveal">
+                    <div class="relative overflow-hidden border border-gray-800 shadow-xl h-64 md:h-80 mb-3">
+                        <img src="PACO.jpg" alt="Paco Nobody" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out grayscale group-hover:grayscale-0" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517430816045-df4b7de8db98?auto=format&fit=crop&q=80&w=600';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-lg md:text-xl font-display text-white uppercase tracking-wide leading-none">Paco Nobody</h3>
+                        <p class="text-skaYellow font-bold text-xs tracking-widest mt-1 uppercase">Productor, Trompetista y Fundador</p>
+                    </div>
+                </div>
+
+                <!-- Member 2: Temo Espinosa -->
+                <div class="group reveal transition-all delay-100">
+                    <div class="relative overflow-hidden border border-gray-800 shadow-xl h-64 md:h-80 mb-3">
+                        <img src="TEMO.jpg" alt="Temo Espinosa" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out grayscale group-hover:grayscale-0" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1516280440614-6697288d5d38?auto=format&fit=crop&q=80&w=600';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-lg md:text-xl font-display text-white uppercase tracking-wide leading-none">Temo Espinosa</h3>
+                        <p class="text-skaYellow font-bold text-xs tracking-widest mt-1 uppercase">Fundador y guitarrista</p>
+                    </div>
+                </div>
+
+                <!-- Member 3: Oscar Lara -->
+                <div class="group reveal transition-all delay-200">
+                    <div class="relative overflow-hidden border border-gray-800 shadow-xl h-64 md:h-80 mb-3">
+                        <img src="OSCAR.jpg" alt="Oscar Lara" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out grayscale group-hover:grayscale-0" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1525994886773-080587e161c2?auto=format&fit=crop&q=80&w=600';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-lg md:text-xl font-display text-white uppercase tracking-wide leading-none">Oscar Lara</h3>
+                        <p class="text-skaYellow font-bold text-xs tracking-widest mt-1 uppercase">Bajo y Fundador</p>
+                    </div>
+                </div>
+
+                <!-- Member 4: Zuriel Ramirez -->
+                <div class="group reveal transition-all delay-300">
+                    <div class="relative overflow-hidden border border-gray-800 shadow-xl h-64 md:h-80 mb-3">
+                        <img src="ZURIEL.jpg" alt="Zuriel Ramirez" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out grayscale group-hover:grayscale-0" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520697830682-bbb6e85e2b0b?auto=format&fit=crop&q=80&w=600';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-lg md:text-xl font-display text-white uppercase tracking-wide leading-none">Zuriel Ramirez</h3>
+                        <p class="text-skaYellow font-bold text-xs tracking-widest mt-1 uppercase">Batería y Fundador</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Shows / Dates -->
+    <section id="dates" class="py-20 px-6 bg-zinc-900 relative overflow-hidden">
+        <!-- Abstract background elements -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-skaYellow rounded-full blur-[100px] opacity-10"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-white rounded-full blur-[100px] opacity-5"></div>
+
+        <div class="max-w-4xl mx-auto z-10 relative">
+            <h2 class="text-5xl font-display text-white text-center mb-16 uppercase reveal">Presentaciones Destacadas</h2>
+
+            <div class="space-y-4">
+                <!-- Date Item 1 -->
+                <div class="group flex flex-col md:flex-row items-center justify-between border-b border-gray-700 py-6 hover:bg-gray-800 transition px-4 reveal">
+                    <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                        <div class="flex flex-col items-center justify-center bg-skaYellow text-black w-24 h-16 font-bold leading-none shrink-0 transform group-hover:rotate-6 transition p-2">
+                            <span class="text-lg">CDMX</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-display text-white group-hover:text-skaYellow transition">Foro Alicia</h3>
+                            <p class="text-gray-400 font-bold">con Out Of Control Army y Sr. Bikini</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Date Item 2 -->
+                <div class="group flex flex-col md:flex-row items-center justify-between border-b border-gray-700 py-6 hover:bg-gray-800 transition px-4 reveal">
+                    <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                        <div class="flex flex-col items-center justify-center bg-transparent border-2 border-skaYellow text-white w-24 h-16 font-bold leading-none shrink-0 transform group-hover:rotate-6 transition p-2">
+                            <span class="text-lg">MOR</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-display text-white group-hover:text-skaYellow transition">Foro The Pit (Cuernavaca)</h3>
+                            <p class="text-gray-400 font-bold">con The Toasters (New York)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Date Item 3 -->
+                <div class="group flex flex-col md:flex-row items-center justify-between border-b border-gray-700 py-6 hover:bg-gray-800 transition px-4 reveal">
+                    <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                        <div class="flex flex-col items-center justify-center bg-transparent border-2 border-skaYellow text-white w-24 h-16 font-bold leading-none shrink-0 transform group-hover:rotate-6 transition p-2">
+                            <span class="text-lg">GDL</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-display text-white group-hover:text-skaYellow transition">Foro Independencia</h3>
+                            <p class="text-gray-400 font-bold">con La Sonora De Llegar (Chile) y La Poronga de Guadalajara México</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Date Item 4 -->
+                 <div class="group flex flex-col md:flex-row items-center justify-between border-b border-gray-700 py-6 hover:bg-gray-800 transition px-4 reveal">
+                    <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                        <div class="flex flex-col items-center justify-center bg-transparent border-2 border-skaYellow text-white w-24 h-16 font-bold leading-none shrink-0 transform group-hover:rotate-6 transition p-2">
+                            <span class="text-lg">CDMX</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-display text-white group-hover:text-skaYellow transition">Foro Indie Rocks!</h3>
+                            <p class="text-gray-400 font-bold">con Lolly Pop Lorry de Rusia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Complete List Grid -->
+            <div class="mt-16 border-t border-gray-800 pt-10 reveal">
+                <h3 class="text-3xl font-display text-skaYellow text-center mb-10 uppercase">Historial de Tour</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center md:text-left">
+                    <div class="bg-black/50 p-6 border border-gray-800">
+                        <h4 class="text-xl font-bold text-white mb-4 border-b border-skaYellow inline-block pb-1">VENUES EMBLEMÁTICOS</h4>
+                        <ul class="space-y-3 text-gray-300">
+                            <li><i class="fas fa-map-marker-alt text-skaYellow mr-2"></i> Foro Hilvana (CDMX) <span class="text-sm text-gray-500 block pl-6">con Lolly Pop Lorry</span></li>
+                            <li><i class="fas fa-map-marker-alt text-skaYellow mr-2"></i> BEAT 803 (Puebla)</li>
+                            <li><i class="fas fa-map-marker-alt text-skaYellow mr-2"></i> Pata Negra (CDMX)</li>
+                            <li><i class="fas fa-map-marker-alt text-skaYellow mr-2"></i> Gato Calavera (CDMX)</li>
+                            <li><i class="fas fa-map-marker-alt text-skaYellow mr-2"></i> Faro de Oriente (CDMX)</li>
+                            <li><i class="fas fa-map-marker-alt text-skaYellow mr-2"></i> Foro Soul Dread (Edomex)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-black/50 p-6 border border-gray-800">
+                        <h4 class="text-xl font-bold text-white mb-4 border-b border-skaYellow inline-block pb-1">FESTIVALES Y OTROS</h4>
+                        <ul class="space-y-3 text-gray-300">
+                            <li><i class="fas fa-ticket-alt text-skaYellow mr-2"></i> Festival A La Media Noche</li>
+                            <li><i class="fas fa-ticket-alt text-skaYellow mr-2"></i> Festival Somos Emergentes</li>
+                            <li><i class="fas fa-ticket-alt text-skaYellow mr-2"></i> Primer JugueSka</li>
+                            <li><i class="fas fa-ticket-alt text-skaYellow mr-2"></i> Festival Ska Sur</li>
+                            <li><i class="fas fa-subway text-skaYellow mr-2"></i> Distintas presentaciones en diferentes metros de la Ciudad De México</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Technical Rider Section -->
+    <section class="py-16 bg-skaYellow text-black text-center">
+        <div class="max-w-4xl mx-auto px-4 reveal">
+            <h3 class="text-3xl font-display mb-6 uppercase">¿Promotor o Venue?</h3>
+            <div class="flex flex-wrap justify-center gap-4">
+			<a href="tech-rider.pdf" download>
+			<button class="flex items-center gap-2 bg-black text-white px-6 py-3 font-bold hover:bg-gray-800 transition shadow-lg">
+				<i class="fas fa-file-pdf"></i> Descargar Tech Rider
+			</button>
+			</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section (Separate from Footer) -->
+    <section id="contact" class="py-20 bg-black text-white relative">
+        <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(#FFD700 1px, transparent 1px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <h2 class="text-5xl font-display text-skaYellow text-center mb-10 uppercase reveal">Contrataciones</h2>
+            <p class="text-gray-400 mb-8 font-bold text-center uppercase tracking-widest reveal">Booking & Management</p>
+            
+            <div class="bg-gray-900 p-8 border border-gray-800 shadow-2xl relative overflow-hidden group reveal">
+                    <!-- Decoración sutil -->
+                <div class="absolute top-0 right-0 w-24 h-24 bg-skaYellow opacity-10 rounded-bl-full"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="relative z-10">
+                        <label class="block text-skaYellow text-xs uppercase font-bold mb-2 tracking-widest"><i class="fas fa-calendar-alt mr-1"></i> Tipo de Evento</label>
+                        <select id="eventType" class="w-full bg-black text-white border-b-2 border-gray-700 p-3 focus:border-skaYellow outline-none text-sm transition-colors cursor-pointer appearance-none">
+                            <option value="Festival">Festival</option>
+                            <option value="Venue / Bar">Venue / Bar</option>
+                            <option value="Evento Privado">Evento Privado</option>
+                            <option value="Entrevista / Prensa">Entrevista / Prensa</option>
+                            <option value="Otro">Otro Asunto</option>
+                        </select>
+                    </div>
+
+                    <div class="relative z-10">
+                        <label class="block text-skaYellow text-xs uppercase font-bold mb-2 tracking-widest"><i class="fas fa-user mr-1"></i> Contactar a:</label>
+                        <select id="contactPerson" class="w-full bg-black text-white border-b-2 border-gray-700 p-3 focus:border-skaYellow outline-none text-sm transition-colors cursor-pointer appearance-none">
+                            <option value="525548993866">Temo (Fundador)</option>
+                            <option value="525648803303">Paco Nobody (Productor)</option>
+                            <option value="525633000419">Jennifer Sánchez (Manager)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button onclick="sendWhatsapp()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-4 px-6 uppercase tracking-wider flex items-center justify-center gap-3 transition-all transform hover:-translate-y-1 shadow-md text-lg">
+                    <i class="fab fa-whatsapp text-3xl"></i> Enviar Mensaje
+                </button>
+            </div>
+            
+            <p class="text-gray-500 text-sm italic mt-8 text-center reveal">thechernobylsoficial@gmail.com</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900 text-white py-12 border-t-4 border-skaYellow relative">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            
+            <!-- Socials -->
+            <div class="flex flex-col items-center md:items-start">
+                <h4 class="text-white font-display text-2xl mb-6">SÍGUENOS WE</h4>
+                <div class="flex space-x-6">
+                    <a href="https://www.facebook.com/profile.php?id=61572459497566" target="_blank" class="w-12 h-12 flex items-center justify-center border border-white rounded-full hover:bg-skaYellow hover:text-black hover:border-skaYellow transition text-xl">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@thechernobyls" target="_blank" class="w-12 h-12 flex items-center justify-center border border-white rounded-full hover:bg-skaYellow hover:text-black hover:border-skaYellow transition text-xl">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UC93LDVLAjTB6EeBMe8IGCLg" target="_blank" class="w-12 h-12 flex items-center justify-center border border-white rounded-full hover:bg-skaYellow hover:text-black hover:border-skaYellow transition text-xl">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Logo Area / Copyright -->
+            <div class="flex flex-col items-center md:items-end justify-center text-center md:text-right">
+                <h2 class="text-4xl md:text-5xl font-display text-skaYellow glitch" data-text="THE CHERNOBYL´S">THE CHERNOBYL´S</h2>
+                <p class="text-xs text-gray-500 mt-4">© 2026 The Chernobyl's Oficial.</p>
+                <p class="text-xs text-gray-600">Ska Electronic Fusion.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Animations and Functionality -->
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black', 'shadow-lg', 'py-2');
+                navbar.classList.remove('py-4', 'mix-blend-difference');
+            } else {
+                navbar.classList.remove('bg-black', 'shadow-lg', 'py-2');
+                navbar.classList.add('py-4', 'mix-blend-difference');
+            }
+        });
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function openMenu() {
+            mobileMenu.classList.remove('translate-x-full');
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.add('translate-x-full');
+        }
+
+        mobileMenuBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+
+        // WhatsApp Functionality
+        function sendWhatsapp() {
+            const phone = document.getElementById('contactPerson').value;
+            const eventType = document.getElementById('eventType').value;
+            // Mensaje predeterminado
+            const text = `Hola, vengo del Press Kit oficial. Me interesa información para un evento de tipo: ${eventType}.`;
+            
+            // Abrir WhatsApp Web/App
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
